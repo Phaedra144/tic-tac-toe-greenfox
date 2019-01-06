@@ -2,6 +2,7 @@ package com.szilvi.tictactoe;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -9,6 +10,8 @@ import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.util.Arrays;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -32,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (gameState[tappedCounter] == 2 && gameIsActive) {
             gameState[tappedCounter] = activePlayer;
-
+            
             counter.setTranslationY(-1000f);
 
             if (activePlayer == 0) {
@@ -65,10 +68,9 @@ public class MainActivity extends AppCompatActivity {
 
                 winnerMessage.setText(winner + " has won!");
                 layout.setVisibility(View.VISIBLE);
-
+                break;
             } else {
                 boolean gameIsOver = true;
-
                 for (int counterState : gameState) {
                     if (counterState == 2) gameIsOver = false;
                 }
