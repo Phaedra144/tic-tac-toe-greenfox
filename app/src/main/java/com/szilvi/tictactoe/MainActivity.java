@@ -28,21 +28,24 @@ public class MainActivity extends AppCompatActivity {
 
     TextView winnerMessage;
     LinearLayout layout;
+    TextView playersTurn;
 
     public void dropIn(View view) {
         ImageView counter = (ImageView) view;
         int tappedCounter = Integer.parseInt(counter.getTag().toString());
+        playersTurn = findViewById(R.id.playerTurn);
 
         if (gameState[tappedCounter] == 2 && gameIsActive) {
             gameState[tappedCounter] = activePlayer;
-            
             counter.setTranslationY(-1000f);
 
             if (activePlayer == 0) {
                 counter.setImageResource(R.drawable.unicorn);
+                playersTurn.setText("It's fox's turn!");
                 activePlayer = 1;
             } else {
                 counter.setImageResource(R.drawable.greenfox);
+                playersTurn.setText("It's unicorn's turn!");
                 activePlayer = 0;
             }
 
@@ -68,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
                 winnerMessage.setText(winner + " has won!");
                 layout.setVisibility(View.VISIBLE);
+                playersTurn.setVisibility(View.GONE);
                 break;
             } else {
                 boolean gameIsOver = true;
@@ -78,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
                 if (gameIsOver) {
                     winnerMessage.setText("It's a draw");
                     layout.setVisibility(View.VISIBLE);
+                    playersTurn.setVisibility(View.GONE);
                 }
             }
         }
